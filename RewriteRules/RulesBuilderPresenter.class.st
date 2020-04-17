@@ -2,12 +2,12 @@
 I provide the UI to create customized rewrite rules.
 "
 Class {
-	#name : #RewriteRulesBuilderPresenter,
+	#name : #RulesBuilderPresenter,
 	#superclass : #SpPresenter,
 	#category : #'RewriteRules-RulesBuilder'
 }
 
 { #category : #specs }
-RewriteRulesBuilderPresenter class >> defaultSpec [
+RulesBuilderPresenter class >> defaultSpec [
 	^ SpBoxLayout newVertical
 ]

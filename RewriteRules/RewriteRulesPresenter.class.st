@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'tabManager'
 	],
-	#category : #RewriteRules
+	#category : #'RewriteRules-MainInterface'
 }
 
 { #category : #specs }
@@ -38,11 +38,7 @@ RewriteRulesPresenter class >> open [
 
 { #category : #initialization }
 RewriteRulesPresenter >> connectPresenters [
-]
-
-{ #category : #initialization }
-RewriteRulesPresenter >> extent [
-	^  800@400
+	super connectPresenters.
 ]
 
 { #category : #initialization }
@@ -52,12 +48,7 @@ RewriteRulesPresenter >> initialExtent [
 
 { #category : #initialization }
 RewriteRulesPresenter >> initializePresenters [
-	self instantiateInstanceVariables.
-]
-
-{ #category : #initialization }
-RewriteRulesPresenter >> instantiateInstanceVariables [
-	tabManager := self instantiate: RewriteTabManagerPresenter 
+	tabManager := self instantiate: RewriteTabManagerPresenter
 ]
 
 { #category : #initialization }

@@ -3,17 +3,9 @@ I am the tab manager for the Rewrite Rules UI
 "
 Class {
 	#name : #RewriteTabManagerPresenter,
-	#superclass : #SpPresenter,
-	#instVars : [
-		'tabManager'
-	],
-	#category : #'RewriteRules-TabManager'
+	#superclass : #SpNotebookPresenter,
+	#category : #'RewriteRules-MainInterface'
 }
-
-{ #category : #specs }
-RewriteTabManagerPresenter class >> defaultSpec [
-	^ SpBoxLayout newVertical add: #tabManager;yourself
-]
 
 { #category : #initialization }
 RewriteTabManagerPresenter >> browseRulesTab [
@@ -32,11 +24,6 @@ RewriteTabManagerPresenter >> buildRulesTab [
 ]
 
 { #category : #initialization }
-RewriteTabManagerPresenter >> connectPresenters [
-	
-]
-
-{ #category : #initialization }
 RewriteTabManagerPresenter >> informationTab [
 	^ SpNotebookPage
 		title: 'Rewrite Rules Information'
@@ -45,13 +32,18 @@ RewriteTabManagerPresenter >> informationTab [
 ]
 
 { #category : #initialization }
-RewriteTabManagerPresenter >> initializePresenters [
-	tabManager := self newNotebook. self initializeTabs
+RewriteTabManagerPresenter >> initialize [
+	super initialize.
+	self initializeTabs
 ]
 
 { #category : #initialization }
 RewriteTabManagerPresenter >> initializeTabs [
-	tabManager addPage: self buildRulesTab; addPage: self browseRulesTab; addPage: self matchRulesTab; addPage: self informationTab
+	self
+		addPage: self buildRulesTab;
+		addPage: self matchRulesTab;
+		addPage: self browseRulesTab;
+		addPage: self informationTab
 ]
 
 { #category : #initialization }
@@ -64,21 +56,21 @@ RewriteTabManagerPresenter >> matchRulesTab [
 
 { #category : #initialization }
 RewriteTabManagerPresenter >> rewriteRulesBrowserPresenter [
-	^ RewriteRulesBrowserPresenter new
+	^ RulesBrowserPresenter new
 ]
 
 { #category : #initialization }
 RewriteTabManagerPresenter >> rewriteRulesBuilderPresenter [
 
-	^ RewriteRulesBuilderPresenter new
+	^ RulesBuilderPresenter new
 ]
 
 { #category : #initialization }
 RewriteTabManagerPresenter >> rewriteRulesInformationPresenter [
-	^ RewriteRulesInformationPresenter new
+	^ RulesInformationPresenter new
 ]
 
 { #category : #initialization }
 RewriteTabManagerPresenter >> rewriteRulesMatcherPresenter [
-	^ RewriteRulesMatcherPresenter
+	^ RulesMatcherPresenter new
 ]
