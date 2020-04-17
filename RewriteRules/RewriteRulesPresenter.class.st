@@ -43,7 +43,7 @@ RewriteRulesPresenter >> connectPresenters [
 
 { #category : #initialization }
 RewriteRulesPresenter >> initialExtent [
-	^ 1000 @ 550
+	^ 1100 @ 550
 ]
 
 { #category : #initialization }

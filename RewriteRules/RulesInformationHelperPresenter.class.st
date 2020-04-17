@@ -2,12 +2,12 @@
 I have the basic information of how the rewrite rules work and how their syntax is written.
 "
 Class {
-	#name : #RulesInformationPresenter,
+	#name : #RulesInformationHelperPresenter,
 	#superclass : #SpPresenter,
-	#category : #'RewriteRules-RulesInformation'
+	#category : #'RewriteRules-InformationHelper'
 }
 
 { #category : #specs }
-RulesInformationPresenter class >> defaultSpec [
+RulesInformationHelperPresenter class >> defaultSpec [
 	^ SpBoxLayout newVertical
 ]

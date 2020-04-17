@@ -4,7 +4,7 @@ I provide the UI to browse all the rewrite rules that have been created and save
 Class {
 	#name : #RulesBrowserPresenter,
 	#superclass : #SpPresenter,
-	#category : #'RewriteRules-RulesBrowser'
+	#category : #'RewriteRules-Browser'
 }
 
 { #category : #specs }

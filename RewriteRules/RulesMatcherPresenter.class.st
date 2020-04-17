@@ -11,7 +11,7 @@ Class {
 		'resultList',
 		'matchMap'
 	],
-	#category : #'RewriteRules-RulesMatcher'
+	#category : #'RewriteRules-Matcher'
 }
 
 { #category : #specs }
@@ -22,19 +22,23 @@ RulesMatcherPresenter class >> defaultSpec [
 		add: #codeExpression;
 		yourself.
 	listResultColumn := SpBoxLayout newVertical
-		add: #executeButton height: 30;
+		add: #executeButton
+			withConstraints: [ :constraints | 
+			constraints
+				padding: 5;
+				height: 40 ];
 		add: #resultList;
 		yourself.
 	^ SpBoxLayout newHorizontal
 		add: expressionsColumn
 			withConstraints: [ :constraints | 
 			constraints
-				padding: 5;
-				width: 425 ];
+				padding: 4;
+				width: 450 ];
 		add: listResultColumn
-			withConstraints: [ :constraints | constraints padding: 5 ];
+			withConstraints: [ :constraints | constraints padding: 4 ];
 		add: #matchMap
-			withConstraints: [ :constraints | constraints padding: 5 ];
+			withConstraints: [ :constraints | constraints padding: 4 ];
 		yourself
 ]
 

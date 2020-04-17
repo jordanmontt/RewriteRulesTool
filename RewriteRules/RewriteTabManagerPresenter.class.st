@@ -67,7 +67,7 @@ RewriteTabManagerPresenter >> rewriteRulesBuilderPresenter [
 
 { #category : #initialization }
 RewriteTabManagerPresenter >> rewriteRulesInformationPresenter [
-	^ RulesInformationPresenter new
+	^ RulesInformationHelperPresenter new
 ]
 
 { #category : #initialization }
