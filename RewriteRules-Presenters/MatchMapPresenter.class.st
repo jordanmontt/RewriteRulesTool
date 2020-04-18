@@ -4,7 +4,7 @@ I am the presenter and I show the matches of a rewrite rule.
 Class {
 	#name : #MatchMapPresenter,
 	#superclass : #SpTablePresenter,
-	#category : #'RewriteRules-Matcher'
+	#category : #'RewriteRules-Presenters-Matcher'
 }
 
 { #category : #initialization }

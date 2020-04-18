@@ -1,5 +1,5 @@
 "
-The information of a single topic is stored here.
+I am an DTO that stores the information of a single topic.
 "
 Class {
 	#name : #InformationContent,
@@ -9,7 +9,7 @@ Class {
 		'content',
 		'index'
 	],
-	#category : #'RewriteRules-InformationHelper'
+	#category : #'RewriteRules-Core-InformationHelper'
 }
 
 { #category : #accessing }

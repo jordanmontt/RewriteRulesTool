@@ -4,5 +4,5 @@ I am a presenter that shows in a list all the times a rewrite rule had been matc
 Class {
 	#name : #MatcherResultListPresenter,
 	#superclass : #SpListPresenter,
-	#category : #'RewriteRules-Matcher'
+	#category : #'RewriteRules-Presenters-Matcher'
 }

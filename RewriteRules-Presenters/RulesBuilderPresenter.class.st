@@ -4,7 +4,7 @@ I provide the UI to create customized rewrite rules.
 Class {
 	#name : #RulesBuilderPresenter,
 	#superclass : #SpPresenter,
-	#category : #'RewriteRules-Builder'
+	#category : #'RewriteRules-Presenters-Builder'
 }
 
 { #category : #specs }

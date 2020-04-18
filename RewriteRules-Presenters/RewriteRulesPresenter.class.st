@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'tabManager'
 	],
-	#category : #'RewriteRules-MainInterface'
+	#category : #'RewriteRules-Presenters-MainInterface'
 }
 
 { #category : #specs }

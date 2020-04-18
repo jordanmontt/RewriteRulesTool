@@ -1,10 +1,16 @@
 "
-Here is the text (content) of the information of the Rewrite Rules.
+I have all the topics saved as class methods. To add a new topic just add a new class method.
+To obtain the topics simply call the 'topics' class method.
+The class method should return an InformationContent object, for example:
+	^ InformationContent new
+		index: 1;
+		title: 'Introduction';
+		content: 'An introdution to the Rewrite Rules.'
 "
 Class {
 	#name : #RulesInformationContent,
 	#superclass : #Object,
-	#category : #'RewriteRules-InformationHelper'
+	#category : #'RewriteRules-Core-InformationHelper'
 }
 
 { #category : #content }

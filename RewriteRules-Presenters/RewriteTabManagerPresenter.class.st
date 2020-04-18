@@ -10,7 +10,7 @@ Class {
 		'informationTab',
 		'matchRulesTab'
 	],
-	#category : #'RewriteRules-MainInterface'
+	#category : #'RewriteRules-Presenters-MainInterface'
 }
 
 { #category : #initialization }

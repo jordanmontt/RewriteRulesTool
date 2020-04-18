@@ -11,7 +11,7 @@ Class {
 		'resultList',
 		'matchMap'
 	],
-	#category : #'RewriteRules-Matcher'
+	#category : #'RewriteRules-Presenters-Matcher'
 }
 
 { #category : #specs }

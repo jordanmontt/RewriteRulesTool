@@ -8,7 +8,7 @@ Class {
 		'topics',
 		'content'
 	],
-	#category : #'RewriteRules-InformationHelper'
+	#category : #'RewriteRules-Presenters-InformationHelper'
 }
 
 { #category : #specs }
@@ -43,8 +43,13 @@ RulesInformationHelperPresenter >> initializePresenters [
 RulesInformationHelperPresenter >> initializeTopics [
 	topics := self newList.
 	topics
-		items: RulesInformationContent topics;
+		items: self obtainTopics;
 		display: [ :e | e title ]
+]
+
+{ #category : #initialization }
+RulesInformationHelperPresenter >> obtainTopics [
+	^ RulesInformationContent topics
 ]
 
 { #category : #initialization }

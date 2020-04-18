@@ -8,7 +8,7 @@ Class {
 		'codeArea',
 		'label'
 	],
-	#category : #'RewriteRules-Matcher'
+	#category : #'RewriteRules-Presenters-Matcher'
 }
 
 { #category : #specs }
