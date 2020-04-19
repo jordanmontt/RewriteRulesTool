@@ -66,8 +66,7 @@ RulesInformationContent class >> introduction [
 	^ InformationContent new
 		index: 1;
 		title: 'Introduction';
-		content: 
-		'An introdution to the Rewrite Rules.'
+		content: 'An introduction to the Rewrite Rules.'
 ]
 
 { #category : #content }
