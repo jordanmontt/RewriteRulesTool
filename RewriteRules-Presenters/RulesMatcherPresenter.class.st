@@ -25,8 +25,8 @@ RulesMatcherPresenter class >> defaultSpec [
 		add: #executeButton
 			withConstraints: [ :constraints | 
 			constraints
-				padding: self padding + 1;
-				height: self height + 5 ];
+				padding: self padding;
+				height: self height ];
 		add: #resultList;
 		yourself.
 	^ SpBoxLayout newHorizontal
@@ -49,7 +49,7 @@ RulesMatcherPresenter class >> height [
 
 { #category : #specs }
 RulesMatcherPresenter class >> padding [
-^  4 
+	^ 5
 ]
 
 { #category : #specs }

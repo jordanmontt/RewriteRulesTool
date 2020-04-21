@@ -18,14 +18,14 @@ AbstractBrowserPresenter class >> defaultSpec [
 		add: #titlePresenter
 			withConstraints: [ :constraints | 
 			constraints
-				height: self titleHeight ];
+				height: self height ];
 		add: #listPresenter;
 		yourself
 ]
 
 { #category : #specs }
-AbstractBrowserPresenter class >> titleHeight [
-	^ 29
+AbstractBrowserPresenter class >> height [
+	^ 40
 ]
 
 { #category : #initialization }

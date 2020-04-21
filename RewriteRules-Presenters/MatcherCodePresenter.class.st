@@ -21,7 +21,7 @@ MatcherCodePresenter class >> defaultSpec [
 
 { #category : #specs }
 MatcherCodePresenter class >> height [
-	^ 29
+	^ 35
 ]
 
 { #category : #initialization }

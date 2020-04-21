@@ -24,7 +24,7 @@ RulesBrowserPresenter class >> defaultSpec [
 					withConstraints: [ :constraints | 
 					constraints
 						padding: self padding;
-						height: self searchHeight ];
+						height: self height ];
 				add: #packages withConstraints: paddingConstraints;
 				yourself);
 		add: #classes withConstraints: paddingConstraints;
@@ -33,13 +33,13 @@ RulesBrowserPresenter class >> defaultSpec [
 ]
 
 { #category : #specs }
-RulesBrowserPresenter class >> padding [
-	^ 5
+RulesBrowserPresenter class >> height [
+	^ 40
 ]
 
 { #category : #specs }
-RulesBrowserPresenter class >> searchHeight [
-	^ 45
+RulesBrowserPresenter class >> padding [
+	^ 5
 ]
 
 { #category : #initialization }
