@@ -7,7 +7,6 @@ Class {
 	#instVars : [
 		'listPresenter',
 		'selectionChangeBlock',
-		'titleName',
 		'titlePresenter'
 	],
 	#category : #'RewriteRules-Presenters-Browser'
@@ -19,31 +18,19 @@ AbstractBrowserPresenter class >> defaultSpec [
 		add: #titlePresenter
 			withConstraints: [ :constraints | 
 			constraints
-				padding: self padding;
 				height: self titleHeight ];
-		add: #listPresenter withConstraints: [ :constraints | constraints padding: self padding ];
+		add: #listPresenter;
 		yourself
 ]
 
 { #category : #specs }
-AbstractBrowserPresenter class >> padding [
-	^ 4
-]
-
-{ #category : #specs }
 AbstractBrowserPresenter class >> titleHeight [
-	^ 32
+	^ 29
 ]
 
 { #category : #initialization }
 AbstractBrowserPresenter >> connectPresenters [
 	listPresenter whenSelectionChangedDo: [ selectionChangeBlock value ]
-]
-
-{ #category : #initialization }
-AbstractBrowserPresenter >> initialize [
-super initialize .
-	titleName := ''
 ]
 
 { #category : #initialization }
@@ -62,16 +49,7 @@ AbstractBrowserPresenter >> initializePresenters [
 
 { #category : #initialization }
 AbstractBrowserPresenter >> initializeTitlePresenter [
-	| morph |
-	morph := StringMorph
-		contents: titleName
-		font:
-			(LogicalFont
-				familyName: Smalltalk ui theme labelFont familyName
-				pointSize: Smalltalk ui theme labelFont pointSize + 5).
-	titlePresenter := SpMorphPresenter new
-		morph: (PanelMorph new addMorphFront: morph);
-		yourself
+	titlePresenter := self instantiate: TitlePresenter.
 ]
 
 { #category : #api }
@@ -81,8 +59,7 @@ AbstractBrowserPresenter >> items: aCollection [
 
 { #category : #api }
 AbstractBrowserPresenter >> name: aName [
-	titleName := aName.
-	(titlePresenter morph submorphs at: 1) contents: aName
+	titlePresenter name: aName.
 ]
 
 { #category : #api }

@@ -25,21 +25,36 @@ RulesMatcherPresenter class >> defaultSpec [
 		add: #executeButton
 			withConstraints: [ :constraints | 
 			constraints
-				padding: 5;
-				height: 40 ];
+				padding: self padding + 1;
+				height: self height + 5 ];
 		add: #resultList;
 		yourself.
 	^ SpBoxLayout newHorizontal
 		add: expressionsColumn
 			withConstraints: [ :constraints | 
 			constraints
-				padding: 4;
-				width: 450 ];
+				padding: self padding;
+				width: self width ];
 		add: listResultColumn
-			withConstraints: [ :constraints | constraints padding: 4 ];
+			withConstraints: [ :constraints | constraints padding: self padding ];
 		add: #matchMap
-			withConstraints: [ :constraints | constraints padding: 4 ];
+			withConstraints: [ :constraints | constraints padding: self padding ];
 		yourself
+]
+
+{ #category : #specs }
+RulesMatcherPresenter class >> height [
+	^ 35
+]
+
+{ #category : #specs }
+RulesMatcherPresenter class >> padding [
+^  4 
+]
+
+{ #category : #specs }
+RulesMatcherPresenter class >> width [
+	^ 450
 ]
 
 { #category : #initialization }

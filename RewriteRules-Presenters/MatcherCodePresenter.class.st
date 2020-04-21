@@ -14,9 +14,14 @@ Class {
 { #category : #specs }
 MatcherCodePresenter class >> defaultSpec [
 	^ SpBoxLayout newVertical
-		add: #label height: 30 ;
+		add: #label height: self height;
 		add: #codeArea;
 		yourself
+]
+
+{ #category : #specs }
+MatcherCodePresenter class >> height [
+	^ 29
 ]
 
 { #category : #initialization }
@@ -26,7 +31,7 @@ MatcherCodePresenter >> initializeCodeArea [
 
 { #category : #initialization }
 MatcherCodePresenter >> initializeLabel [
-	label := self newLabel
+	label := self instantiate: TitlePresenter
 ]
 
 { #category : #initialization }
@@ -38,5 +43,5 @@ MatcherCodePresenter >> initializePresenters [
 
 { #category : #accesing }
 MatcherCodePresenter >> label: aName [
-	label label: aName
+	label name: aName
 ]

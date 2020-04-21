@@ -34,7 +34,7 @@ RulesBrowserPresenter class >> defaultSpec [
 
 { #category : #specs }
 RulesBrowserPresenter class >> padding [
-	^ 4
+	^ 5
 ]
 
 { #category : #specs }
