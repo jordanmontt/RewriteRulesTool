@@ -10,5 +10,5 @@ Class {
 { #category : #baselines }
 BaselineOfRewriteRules >> baseline: spec [
 	<baseline>
-	spec for: #common do: [ spec package: 'RewriteRules' ]
+	spec for: #common do: [ spec package: 'RewriteRules-Presenters'; package: 'RewriteRules-Core' ]
 ]
