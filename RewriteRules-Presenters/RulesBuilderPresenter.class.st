@@ -8,14 +8,15 @@ Class {
 		'inputCode',
 		'outputCode',
 		'transformationRule',
-		'inputArrow',
-		'outputArrow'
+		'codeInputArrow',
+		'codeOutputArrow'
 	],
 	#category : #'RewriteRules-Presenters-Builder'
 }
 
 { #category : #specs }
 RulesBuilderPresenter class >> defaultSpec [
+	^ SpBoxLayout newVertical add: #transformationRule; yourself
 ]
 
 { #category : #specs }
@@ -26,4 +27,9 @@ RulesBuilderPresenter class >> height [
 { #category : #specs }
 RulesBuilderPresenter class >> width [
 ^50 
+]
+
+{ #category : #initialization }
+RulesBuilderPresenter >> initializePresenters [
+	transformationRule := self instantiate: TransformationRulePanel
 ]

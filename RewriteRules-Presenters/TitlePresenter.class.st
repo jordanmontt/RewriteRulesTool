@@ -8,7 +8,7 @@ Class {
 		'titleMorph',
 		'titleName'
 	],
-	#category : #'RewriteRules-Presenters-Morph'
+	#category : #'RewriteRules-Presenters-Morphs'
 }
 
 { #category : #specs }

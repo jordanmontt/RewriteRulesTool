@@ -25,8 +25,8 @@ RewriteRulesPresenter class >> menuCommandOn: aBuilder [
 		order: 22;
 		parent: #Tools;
 		help: 'Build, match and browse customized Rewrite Rules.';
-		icon: ((self iconNamed: #book)  scaledToSize: 16 @ 16);
-	 withSeparatorAfter
+		icon: ((self iconNamed: #book) scaledToSize: 16 @ 16);
+		withSeparatorAfter
 ]
 
 { #category : #specs }

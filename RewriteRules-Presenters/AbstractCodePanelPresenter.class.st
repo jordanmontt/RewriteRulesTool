@@ -18,7 +18,17 @@ Class {
 	#name : #AbstractCodePanelPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'codingPanel'
+		'textModel'
 	],
 	#category : #'RewriteRules-Presenters-Builder'
 }
+
+{ #category : #specs }
+AbstractCodePanelPresenter class >> defaultSpec [
+	^ SpBoxLayout newVertical add: #textModel; yourself
+]
+
+{ #category : #initialization }
+AbstractCodePanelPresenter >> initializePresenters [
+	textModel := self newCode
+]
