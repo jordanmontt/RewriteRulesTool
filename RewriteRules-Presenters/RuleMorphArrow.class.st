@@ -1,3 +1,6 @@
+"
+I am the arrow morph for the Transformation Rules Panel. 
+"
 Class {
 	#name : #RuleMorphArrow,
 	#superclass : #AbstractMorphArrow,
@@ -5,14 +8,14 @@ Class {
 }
 
 { #category : #initialization }
-RuleMorphArrow >> initializePresenters [
-	super initializePresenters.
-	self morph 		vResizing: #spaceFill;
-		hResizing: #spaceFil;
-		scale: 0.01.
+RuleMorphArrow >> color [
+	^ Color veryLightGray
 ]
 
 { #category : #initialization }
-RuleMorphArrow >> morphClass [
-	^ PolygonMorph
+RuleMorphArrow >> initializePresenters [
+	super initializePresenters.
+	self morph
+		vResizing: #spaceFill;
+		hResizing: #spaceFil
 ]

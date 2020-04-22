@@ -1,3 +1,6 @@
+"
+I am the abstract class for an arrow morph. I create the arrow polygon and my subclasees define my orentation and other custumization options.
+"
 Class {
 	#name : #AbstractMorphArrow,
 	#superclass : #SpPresenter,
@@ -13,9 +16,14 @@ AbstractMorphArrow class >> defaultSpec [
 ]
 
 { #category : #initialization }
+AbstractMorphArrow >> color [
+	self subclassResponsibility
+]
+
+{ #category : #initialization }
 AbstractMorphArrow >> createArrowMorph [
 	| morph |
-	morph := self morphClass
+	morph := PolygonMorph
 		vertices:
 			{(0 @ 80).
 			(150 @ 80).
@@ -24,10 +32,9 @@ AbstractMorphArrow >> createArrowMorph [
 			(150 @ 175).
 			(150 @ 120).
 			(0 @ 120)}
-		color: Color lightGray
-		borderWidth: 5
+		color: self color
+		borderWidth: 1.5
 		borderColor: Color black.
-	morph scale: 0.25.
 	^ morph
 ]
 
@@ -40,9 +47,4 @@ AbstractMorphArrow >> initializePresenters [
 { #category : #api }
 AbstractMorphArrow >> morph [
 	^ arrowMorphAsPresenter morph
-]
-
-{ #category : #initialization }
-AbstractMorphArrow >> morphClass [
-	^ self subclassResponsibility
 ]
