@@ -36,6 +36,26 @@ RewriteRulesPresenter class >> open [
 		openWithSpec
 ]
 
+{ #category : #api }
+RewriteRulesPresenter class >> titleHeight [
+	^ 35
+]
+
+{ #category : #api }
+RewriteRulesPresenter class >> toolHeight [
+	^ 630
+]
+
+{ #category : #api }
+RewriteRulesPresenter class >> toolPadding [
+	^ 5
+]
+
+{ #category : #api }
+RewriteRulesPresenter class >> toolWidth [
+	^ 1100
+]
+
 { #category : #initialization }
 RewriteRulesPresenter >> connectPresenters [
 	super connectPresenters.
@@ -43,7 +63,7 @@ RewriteRulesPresenter >> connectPresenters [
 
 { #category : #initialization }
 RewriteRulesPresenter >> initialExtent [
-	^ 1100 @ 550
+	^ self class toolWidth @ self class toolHeight
 ]
 
 { #category : #initialization }

@@ -13,7 +13,9 @@ Class {
 
 { #category : #specs }
 TitlePresenter class >> defaultSpec [
-	^ SpBoxLayout newVertical add: #titleMorph; yourself
+	^ SpBoxLayout newVertical
+		add: #titleMorph;
+		yourself
 ]
 
 { #category : #initialization }

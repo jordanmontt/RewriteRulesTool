@@ -6,7 +6,7 @@ Class {
 	#superclass : #SpPresenter,
 	#instVars : [
 		'codeArea',
-		'label'
+		'title'
 	],
 	#category : #'RewriteRules-Presenters-Matcher'
 }
@@ -14,14 +14,9 @@ Class {
 { #category : #specs }
 MatcherCodePresenter class >> defaultSpec [
 	^ SpBoxLayout newVertical
-		add: #label height: self height;
+		add: #title height: RewriteRulesPresenter titleHeight;
 		add: #codeArea;
 		yourself
-]
-
-{ #category : #specs }
-MatcherCodePresenter class >> height [
-	^ 35
 ]
 
 { #category : #initialization }
@@ -31,7 +26,7 @@ MatcherCodePresenter >> initializeCodeArea [
 
 { #category : #initialization }
 MatcherCodePresenter >> initializeLabel [
-	label := self instantiate: TitlePresenter
+	title := self instantiate: TitlePresenter
 ]
 
 { #category : #initialization }
@@ -43,5 +38,5 @@ MatcherCodePresenter >> initializePresenters [
 
 { #category : #accesing }
 MatcherCodePresenter >> label: aName [
-	label name: aName
+	title name: aName
 ]

@@ -28,41 +28,27 @@ TransformationRulePanel class >> buttonsPanelWidht [
 
 { #category : #specs }
 TransformationRulePanel class >> defaultSpec [
-	| buttonsPanel paddingConstraints arrowConstrainsts |
-	paddingConstraints := [ :constraints | 
-	constraints
-		padding: self padding;
-		height: 70 ].
+	| buttonsPanel arrowConstrainsts paddingConstraints |
 	arrowConstrainsts := [ :constraints | 
 	constraints
-		padding: self padding;
+		padding: RewriteRulesPresenter toolPadding;
 		height: self arrowHeight ].
+	paddingConstraints := [ :constraints | constraints padding: RewriteRulesPresenter toolPadding ].
 	buttonsPanel := SpBoxLayout newVertical
 		add: #generateButton withConstraints: paddingConstraints;
 		add: #ruleArrow withConstraints: arrowConstrainsts;
 		add: #undoButton withConstraints: paddingConstraints;
 		add: #redoButton withConstraints: paddingConstraints;
-		borderWidth: 4;
 		yourself.
 	^ SpBoxLayout newVertical
-		add: #title height: self titleHeight;
+		add: #title height: RewriteRulesPresenter titleHeight;
 		add:
 			(SpBoxLayout newHorizontal
-				add: #inputRule;
+				add: #inputRule withConstraints: paddingConstraints;
 				add: buttonsPanel width: self buttonsPanelWidht;
-				add: #outputRule;
+				add: #outputRule withConstraints: paddingConstraints;
 				yourself);
 		yourself
-]
-
-{ #category : #specs }
-TransformationRulePanel class >> padding [
-^ 5
-]
-
-{ #category : #specs }
-TransformationRulePanel class >> titleHeight [
-	^ 35
 ]
 
 { #category : #initialization }

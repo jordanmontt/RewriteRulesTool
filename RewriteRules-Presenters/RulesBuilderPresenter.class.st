@@ -16,12 +16,25 @@ Class {
 
 { #category : #specs }
 RulesBuilderPresenter class >> defaultSpec [
-	^ SpBoxLayout newVertical add: #transformationRule; yourself
+	| paddingConstraints |
+	paddingConstraints := [ :constraints | constraints padding: RewriteRulesPresenter toolPadding].
+	^ SpBoxLayout newVertical
+		add:
+			(SpBoxLayout newHorizontal
+				add: #inputCode withConstraints: paddingConstraints;
+				add: #outputCode withConstraints: paddingConstraints;
+				yourself) withConstraints: paddingConstraints;
+		add: #transformationRule
+			withConstraints: [ :constraints | 
+			constraints
+				padding: RewriteRulesPresenter toolPadding;
+				height: self height ];
+		yourself
 ]
 
 { #category : #specs }
 RulesBuilderPresenter class >> height [
-	 ^40
+	^ (RewriteRulesPresenter toolHeight - 20 ) / 2
 ]
 
 { #category : #specs }
@@ -31,5 +44,7 @@ RulesBuilderPresenter class >> width [
 
 { #category : #initialization }
 RulesBuilderPresenter >> initializePresenters [
-	transformationRule := self instantiate: TransformationRulePanel
+	transformationRule := self instantiate: TransformationRulePanel.
+	inputCode := self instantiate: InputCodePresenter.
+	outputCode := self instantiate: OutputCodePresenter
 ]
