@@ -13,14 +13,9 @@ Class {
 { #category : #specs }
 OutputCodePresenter class >> defaultSpec [
 	^ SpBoxLayout newVertical
-		add: #title height: self titleHeight;
+		add: #title height: RewriteRulesPresenter titleHeight;
 		add: #textModel;
 		yourself
-]
-
-{ #category : #specs }
-OutputCodePresenter class >> titleHeight [
-	^ 35 
 ]
 
 { #category : #initialization }

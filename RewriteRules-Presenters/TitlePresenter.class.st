@@ -40,8 +40,10 @@ TitlePresenter >> initializePresenters [
 
 { #category : #api }
 TitlePresenter >> name: aName [
-	titleName := aName.
-	(titleMorph morph submorphs at: 1) contents: aName
+	titleName := '        ' , aName.
+	(titleMorph morph submorphs at: 1) contents: titleName.
+	
+	
 ]
 
 { #category : #initialization }

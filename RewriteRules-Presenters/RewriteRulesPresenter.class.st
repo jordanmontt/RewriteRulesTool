@@ -48,7 +48,7 @@ RewriteRulesPresenter class >> toolHeight [
 
 { #category : #api }
 RewriteRulesPresenter class >> toolPadding [
-	^ 5
+	^ 3
 ]
 
 { #category : #api }
