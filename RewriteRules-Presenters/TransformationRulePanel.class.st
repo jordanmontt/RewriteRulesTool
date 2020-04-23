@@ -55,13 +55,57 @@ TransformationRulePanel class >> defaultSpec [
 ]
 
 { #category : #initialization }
+TransformationRulePanel >> initializeGenerateButton [
+	generateButton := self newButton.
+	generateButton
+		label: 'Generate rule';
+		icon: (self iconNamed: #smallSave)
+]
+
+{ #category : #initialization }
+TransformationRulePanel >> initializeInputRule [
+	inputRule := self instantiate: InputTransformationRulePresenter
+]
+
+{ #category : #initialization }
+TransformationRulePanel >> initializeOutputRule [
+	outputRule := self instantiate: OutputTransformationRulePresenter
+]
+
+{ #category : #initialization }
 TransformationRulePanel >> initializePresenters [
-	inputRule := self instantiate: InputTransformationRulePresenter.
-	outputRule := self instantiate: OutputTransformationRulePresenter.
-	undoButton := self instantiate: UndoRuleButton.
-	redoButton := self instantiate: RedoRuleButton.
-	generateButton := self instantiate: GenerateRuleButton.
-	ruleArrow := self instantiate: RuleMorphArrow.
+	self initializeUndoButton.
+	self initializeRedoButton.
+	self initializeGenerateButton.
+	self initializeTitle.
+	self initializeInputRule.
+	self initializeOutputRule.
+	self initializeRuleArrow
+]
+
+{ #category : #initialization }
+TransformationRulePanel >> initializeRedoButton [
+	redoButton := self newButton.
+	redoButton
+		label: 'Redo';
+		icon: (self iconNamed: #smallRedo)
+]
+
+{ #category : #initialization }
+TransformationRulePanel >> initializeRuleArrow [
+	ruleArrow := self instantiate: RuleArrowPresenter
+]
+
+{ #category : #initialization }
+TransformationRulePanel >> initializeTitle [
 	title := self instantiate: TitlePresenter.
 	title name: 'Transformation Rule'
+]
+
+{ #category : #initialization }
+TransformationRulePanel >> initializeUndoButton [
+	undoButton := self newButton.
+	undoButton
+		label: 'Undo';
+		icon: (self iconNamed: #smallUndo)
 ]

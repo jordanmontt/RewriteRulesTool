@@ -33,9 +33,9 @@ TitlePresenter >> initializePresenters [
 			(LogicalFont
 				familyName: self obtainFontFamilyName
 				pointSize: self obtainFontPointSize).
-	titleMorph := SpMorphPresenter new
-		morph: (PanelMorph new addMorphFront: morph);
-		yourself
+	titleMorph := self newMorph.
+	titleMorph
+		morph: (PanelMorph new addMorphFront: morph)
 ]
 
 { #category : #api }

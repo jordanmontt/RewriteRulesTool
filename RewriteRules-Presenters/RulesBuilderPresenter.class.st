@@ -8,15 +8,24 @@ Class {
 		'inputCode',
 		'outputCode',
 		'transformationRule',
-		'codeInputArrow',
-		'codeOutputArrow'
+		'codeInputStatus',
+		'codeOutputStatus'
 	],
 	#category : #'RewriteRules-Presenters-Builder'
 }
 
 { #category : #specs }
+RulesBuilderPresenter class >> arrowHeight [
+	^ 50
+]
+
+{ #category : #specs }
 RulesBuilderPresenter class >> defaultSpec [
-	| paddingConstraints |
+	| paddingConstraints statusBar |
+	statusBar := SpBoxLayout newHorizontal
+		add: #codeInputStatus;
+		add: #codeOutputStatus;
+		yourself.
 	paddingConstraints := [ :constraints | constraints padding: RewriteRulesPresenter toolPadding ].
 	^ SpBoxLayout newVertical
 		add:
@@ -24,6 +33,8 @@ RulesBuilderPresenter class >> defaultSpec [
 				add: #inputCode withConstraints: paddingConstraints;
 				add: #outputCode withConstraints: paddingConstraints;
 				yourself);
+		add: statusBar
+			withConstraints: [ :constraints | constraints height: self arrowHeight ];
 		add: #transformationRule
 			withConstraints: [ :constraints | 
 			constraints
@@ -34,12 +45,14 @@ RulesBuilderPresenter class >> defaultSpec [
 
 { #category : #specs }
 RulesBuilderPresenter class >> height [
-	^ (RewriteRulesPresenter toolHeight - 20 ) / 2
+	^ (RewriteRulesPresenter toolHeight - 70) / 2
 ]
 
 { #category : #initialization }
 RulesBuilderPresenter >> initializePresenters [
 	transformationRule := self instantiate: TransformationRulePanel.
 	inputCode := self instantiate: InputCodePresenter.
-	outputCode := self instantiate: OutputCodePresenter
+	outputCode := self instantiate: OutputCodePresenter.
+	codeInputStatus := self instantiate: InputStatusPresenter.
+	codeOutputStatus := self instantiate: OutputStatusPresenter
 ]

@@ -2,20 +2,17 @@
 I am the arrow morph for the Transformation Rules Panel. 
 "
 Class {
-	#name : #RuleMorphArrow,
-	#superclass : #AbstractMorphArrow,
+	#name : #RuleArrowPresenter,
+	#superclass : #AbstractArrowPresenter,
 	#category : #'RewriteRules-Presenters-Morphs'
 }
 
 { #category : #initialization }
-RuleMorphArrow >> color [
-	^ Color veryLightGray
-]
-
-{ #category : #initialization }
-RuleMorphArrow >> initializePresenters [
+RuleArrowPresenter >> initializePresenters [
 	super initializePresenters.
 	self morph
 		vResizing: #spaceFill;
-		hResizing: #spaceFil
+		hResizing: #spaceFil;
+		color: Color veryLightGray;
+		isHoverable: false
 ]
