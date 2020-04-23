@@ -16,16 +16,9 @@ Class {
 AbstractBrowserPresenter class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add: #titlePresenter
-			withConstraints: [ :constraints | 
-			constraints
-				height: self height ];
+			withConstraints: [ :constraints | constraints height: RewriteRulesPresenter titleHeight ];
 		add: #listPresenter;
 		yourself
-]
-
-{ #category : #specs }
-AbstractBrowserPresenter class >> height [
-	^ 40
 ]
 
 { #category : #initialization }

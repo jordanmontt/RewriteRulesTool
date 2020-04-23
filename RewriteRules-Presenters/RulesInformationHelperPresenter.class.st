@@ -16,7 +16,7 @@ RulesInformationHelperPresenter class >> defaultSpec [
 	^ SpPanedLayout newHorizontal
 		position: 200;
 		add: #topics;
-		add: #content;
+		add: #content; 
 		yourself
 ]
 

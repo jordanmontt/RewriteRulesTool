@@ -25,8 +25,8 @@ RewriteRulesPresenter class >> menuCommandOn: aBuilder [
 		order: 22;
 		parent: #Tools;
 		help: 'Build, match and browse customized Rewrite Rules.';
-		icon: ((self iconNamed: #book)  scaledToSize: 16 @ 16);
-	 withSeparatorAfter
+		icon: ((self iconNamed: #book) scaledToSize: 16 @ 16);
+		withSeparatorAfter
 ]
 
 { #category : #specs }
@@ -36,6 +36,26 @@ RewriteRulesPresenter class >> open [
 		openWithSpec
 ]
 
+{ #category : #api }
+RewriteRulesPresenter class >> titleHeight [
+	^ 35
+]
+
+{ #category : #api }
+RewriteRulesPresenter class >> toolHeight [
+	^ 630
+]
+
+{ #category : #api }
+RewriteRulesPresenter class >> toolPadding [
+	^ 3
+]
+
+{ #category : #api }
+RewriteRulesPresenter class >> toolWidth [
+	^ 1100
+]
+
 { #category : #initialization }
 RewriteRulesPresenter >> connectPresenters [
 	super connectPresenters.
@@ -43,7 +63,7 @@ RewriteRulesPresenter >> connectPresenters [
 
 { #category : #initialization }
 RewriteRulesPresenter >> initialExtent [
-	^ 1100 @ 550
+	^ self class toolWidth @ self class toolHeight
 ]
 
 { #category : #initialization }

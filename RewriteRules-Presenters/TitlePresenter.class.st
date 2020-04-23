@@ -8,12 +8,14 @@ Class {
 		'titleMorph',
 		'titleName'
 	],
-	#category : #'RewriteRules-Presenters-Morph'
+	#category : #'RewriteRules-Presenters-Morphs'
 }
 
 { #category : #specs }
 TitlePresenter class >> defaultSpec [
-	^ SpBoxLayout newVertical add: #titleMorph; yourself
+	^ SpBoxLayout newVertical
+		add: #titleMorph;
+		yourself
 ]
 
 { #category : #initialization }
@@ -31,15 +33,15 @@ TitlePresenter >> initializePresenters [
 			(LogicalFont
 				familyName: self obtainFontFamilyName
 				pointSize: self obtainFontPointSize).
-	titleMorph := SpMorphPresenter new
-		morph: (PanelMorph new addMorphFront: morph);
-		yourself
+	titleMorph := self newMorph.
+	titleMorph
+		morph: (PanelMorph new addMorphFront: morph)
 ]
 
 { #category : #api }
 TitlePresenter >> name: aName [
-	titleName := aName.
-	(titleMorph morph submorphs at: 1) contents: aName
+	titleName := '    ' , aName.
+	(titleMorph morph submorphs at: 1) contents: titleName
 ]
 
 { #category : #initialization }

@@ -16,15 +16,15 @@ Class {
 { #category : #specs }
 RulesBrowserPresenter class >> defaultSpec [
 	| paddingConstraints |
-	paddingConstraints := [ :constraints | constraints padding: self padding ].
+	paddingConstraints := [ :constraints | constraints padding: RewriteRulesPresenter toolPadding ].
 	^ SpBoxLayout newHorizontal
 		add:
 			(SpBoxLayout newVertical
 				add: #searchBar
 					withConstraints: [ :constraints | 
 					constraints
-						padding: self padding;
-						height: self height ];
+						padding: RewriteRulesPresenter toolPadding;
+						height: self height];
 				add: #packages withConstraints: paddingConstraints;
 				yourself);
 		add: #classes withConstraints: paddingConstraints;
@@ -35,11 +35,6 @@ RulesBrowserPresenter class >> defaultSpec [
 { #category : #specs }
 RulesBrowserPresenter class >> height [
 	^ 40
-]
-
-{ #category : #specs }
-RulesBrowserPresenter class >> padding [
-	^ 5
 ]
 
 { #category : #initialization }
