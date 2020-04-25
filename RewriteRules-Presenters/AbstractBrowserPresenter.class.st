@@ -36,8 +36,8 @@ AbstractBrowserPresenter >> initializePresenters [
 	self initializeTitlePresenter.
 	self initializeListPresenter.
 	self focusOrder
-		add: #titlePresenter;
-		add: #listPresenter
+		add: titlePresenter;
+		add: listPresenter
 ]
 
 { #category : #initialization }

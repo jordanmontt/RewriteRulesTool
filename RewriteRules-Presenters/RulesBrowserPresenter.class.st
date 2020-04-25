@@ -8,7 +8,8 @@ Class {
 		'searchBar',
 		'packages',
 		'classes',
-		'methods'
+		'methods',
+		'actionBar'
 	],
 	#category : #'RewriteRules-Presenters-Browser'
 }
@@ -17,18 +18,24 @@ Class {
 RulesBrowserPresenter class >> defaultSpec [
 	| paddingConstraints |
 	paddingConstraints := [ :constraints | constraints padding: RewriteRulesPresenter toolPadding ].
-	^ SpBoxLayout newHorizontal
+	^ SpBoxLayout newVertical
 		add:
-			(SpBoxLayout newVertical
-				add: #searchBar
-					withConstraints: [ :constraints | 
-					constraints
-						padding: RewriteRulesPresenter toolPadding;
-						height: self height];
-				add: #packages withConstraints: paddingConstraints;
-				yourself);
-		add: #classes withConstraints: paddingConstraints;
-		add: #methods withConstraints: paddingConstraints;
+			(SpBoxLayout newHorizontal
+				add:
+					(SpBoxLayout newVertical
+						add: #searchBar
+							withConstraints: [ :constraints | 
+							constraints
+								padding: RewriteRulesPresenter toolPadding;
+								height: self height ];
+						add: #packages withConstraints: paddingConstraints;
+						yourself);
+				add: #classes withConstraints: paddingConstraints;
+				add: #methods withConstraints: paddingConstraints);
+		add: #actionBar withConstraints: [ :constraints | 
+							constraints
+								padding: RewriteRulesPresenter toolPadding;
+								height: self height ];
 		yourself
 ]
 
@@ -42,5 +49,12 @@ RulesBrowserPresenter >> initializePresenters [
 	searchBar := self instantiate: SearchBarPresenter.
 	packages := self instantiate: PackagesBrowserPresenter.
 	classes := self instantiate: ClassesBrowserPresenter.
-	methods := self instantiate: MethodsBrowserPresenter
+	methods := self instantiate: MethodsBrowserPresenter.
+	actionBar := self instantiate: BrowserActionBar.
+	self focusOrder
+		add: searchBar;
+		add: packages;
+		add: classes;
+		add: methods;
+		add: actionBar
 ]
