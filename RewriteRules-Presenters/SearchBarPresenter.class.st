@@ -66,7 +66,9 @@ SearchBarPresenter >> obtainMatchingItems: searchTerm [
 
 { #category : #actions }
 SearchBarPresenter >> obtainSystemPackages [
-	^ SystemPackagesProvider obtainSystemPackages
+	"	^ SystemPackagesProvider obtainSystemPackages"
+
+	
 ]
 
 { #category : #actions }
