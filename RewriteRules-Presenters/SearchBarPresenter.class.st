@@ -45,7 +45,7 @@ SearchBarPresenter >> fillWithAllItemsBlock: anObject [
 { #category : #initialization }
 SearchBarPresenter >> initializePresenters [
 	searchBar := SpMorphPresenter new morph: self createSearchMorph.
-	self focusOrder add: #searchBar.
+	self focusOrder add: searchBar
 ]
 
 { #category : #searching }
@@ -66,7 +66,9 @@ SearchBarPresenter >> obtainMatchingItems: searchTerm [
 
 { #category : #actions }
 SearchBarPresenter >> obtainSystemPackages [
-	^ SystemPackagesProvider obtainSystemPackages
+	"	^ SystemPackagesProvider obtainSystemPackages"
+
+	
 ]
 
 { #category : #actions }
@@ -84,11 +86,6 @@ SearchBarPresenter >> performSearchMatchOcurredBlock: matchingItems [
 	seachMatchOcurredBlock value: matchingItems.
 ]
 
-{ #category : #api }
-SearchBarPresenter >> seachMatchOcurredBlock: anObject [
-	seachMatchOcurredBlock := anObject
-]
-
 { #category : #searching }
 SearchBarPresenter >> search: searchTerm [
 	| matchingItems |
@@ -103,4 +100,9 @@ SearchBarPresenter >> search: searchTerm [
 { #category : #api }
 SearchBarPresenter >> searchMatchDidntOcurredBlock: anObject [
 	searchMatchDidntOcurredBlock := anObject
+]
+
+{ #category : #api }
+SearchBarPresenter >> searchMatchOcurredBlock: anObject [
+	seachMatchOcurredBlock := anObject
 ]
