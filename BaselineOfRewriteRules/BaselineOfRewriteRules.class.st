@@ -14,5 +14,6 @@ BaselineOfRewriteRules >> baseline: spec [
 		for: #common
 		do: [ spec
 				package: 'RewriteRules-Presenters';
-				package: 'RewriteRules-Core' ]
+				package: 'RewriteRules-Core';
+				package: 'RewriteRules-Tests' ]
 ]
