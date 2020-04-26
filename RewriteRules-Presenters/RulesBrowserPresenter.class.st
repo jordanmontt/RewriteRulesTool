@@ -5,7 +5,6 @@ Class {
 	#name : #RulesBrowserPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
-		'searchBar',
 		'packages',
 		'classes',
 		'methods',
@@ -16,22 +15,20 @@ Class {
 
 { #category : #specs }
 RulesBrowserPresenter class >> defaultSpec [
-	| paddingConstraints |
+	| paddingConstraints actionBarConstraints |
 	paddingConstraints := [ :constraints | constraints padding: RewriteRulesPresenter toolPadding ].
+	actionBarConstraints := [ :constraints | 
+	constraints
+		padding: RewriteRulesPresenter toolPadding;
+		height: 50 ].
 	^ SpBoxLayout newVertical
 		add:
 			(SpBoxLayout newHorizontal
-				add:
-					(SpBoxLayout newVertical								
-						add: #packages withConstraints: paddingConstraints;
-						yourself);
+				add: #packages withConstraints: paddingConstraints;
 				add: #classes withConstraints: paddingConstraints;
-				add: #methods withConstraints: paddingConstraints);
-		add: #actionBar
-			withConstraints: [ :constraints | 
-			constraints
-				padding: RewriteRulesPresenter toolPadding;
-				height: self height ];
+				add: #methods withConstraints: paddingConstraints;
+				yourself);
+		add: #actionBar withConstraints: actionBarConstraints;
 		yourself
 ]
 
@@ -46,6 +43,11 @@ RulesBrowserPresenter >> areSelectedItemsValid: selectedItems [
 		and: [ selectedItems allSatisfy: [ :package | package isNotNil ] ]
 ]
 
+{ #category : #accessing }
+RulesBrowserPresenter >> classes [
+	^ classes
+]
+
 { #category : #initialization }
 RulesBrowserPresenter >> connectPresenters [
 	packages
@@ -53,24 +55,11 @@ RulesBrowserPresenter >> connectPresenters [
 			[ :selection | [ self selectedPackagesChanged ] cull: selection selectedItems ].
 	classes
 		whenSelectionChangedDo:
-			[ :selection | [ self selectedClassesChanged ] cull: selection selectedItems ].
-	methods
-		whenSelectionChangedDo:
-			[ :selection | [ self selectedMethodsChanged ] cull: selection selectedItems ]
+			[ :selection | [ self selectedClassesChanged ] cull: selection selectedItems ]
 ]
 
 { #category : #defaults }
-RulesBrowserPresenter >> fillMethodsPane: selectedClasses [
-	| allMethodsInClasses |
-	allMethodsInClasses := OrderedCollection new.
-	selectedClasses
-		do: [ :eachClass | allMethodsInClasses addAll: eachClass selectors].
-	methods items: allMethodsInClasses.
-	methods resetListSelection
-]
-
-{ #category : #defaults }
-RulesBrowserPresenter >> iconFor: class [
+RulesBrowserPresenter >> iconForClass: class [
 	((class
 		includesBehavior: (Smalltalk globals at: #TestCase ifAbsent: [ false ]))
 		and: [ class isAbstract not ])
@@ -99,32 +88,61 @@ RulesBrowserPresenter >> iconFor: class [
 ]
 
 { #category : #initialization }
-RulesBrowserPresenter >> initializePresenters [
-	packages := self newList.
+RulesBrowserPresenter >> initializeActionBar [
+	actionBar := self instantiate: BrowserActionBar
+]
+
+{ #category : #initialization }
+RulesBrowserPresenter >> initializeClassesPresenters [
 	classes := self newList.
+	classes
+		headerTitle: 'Classes';
+		display: [ :item | item name ];
+		icons: [ :elem | self iconForClass: elem ];
+		sortingBlock: [ :a :b | a name < b name ];
+		enableItemSubstringFilter;
+		beMultipleSelection
+]
+
+{ #category : #initialization }
+RulesBrowserPresenter >> initializeMethodsPresenters [
 	methods := self newList.
-	actionBar := self instantiate: BrowserActionBar.
+	methods
+		headerTitle: 'Methods';
+		display: [ :item | '    ' , item ];
+		enableItemSubstringFilter
+		
+]
+
+{ #category : #initialization }
+RulesBrowserPresenter >> initializePackagesPresenters [
+	packages := self newList.
 	packages
 		items: self obtainSystemPackages;
-		enableItemSubstringFilter;
+		headerTitle: 'Packages';
+		display: [ :item | item name ];
 		icons: [ :elem | self iconNamed: #packageIcon ];
 		sortingBlock: [ :a :b | a name < b name ];
-		display: [ :item | item name ];
-		beMultipleSelection.
-	classes
 		enableItemSubstringFilter;
-		icons: [ :elem | self iconFor: elem ];
-		sortingBlock: [ :a :b | a name < b name ];
-		display: [ :item | item name ];
-		beMultipleSelection.
-	methods
-		enableItemSubstringFilter;
-		display: [ :item | '    ' , item ].
+		beMultipleSelection
+]
+
+{ #category : #initialization }
+RulesBrowserPresenter >> initializePresenters [
+	self initializePackagesPresenters.
+	self initializeClassesPresenters.
+	self initializeMethodsPresenters.
+	self initializeActionBar.
 	self focusOrder
 		add: packages;
 		add: classes;
 		add: methods;
 		add: actionBar
+]
+
+{ #category : #accessing }
+RulesBrowserPresenter >> methods [
+	^ methods
 ]
 
 { #category : #defaults }
@@ -141,17 +159,35 @@ RulesBrowserPresenter >> obtainSystemPackages [
 	^ RBBrowserEnvironment new packages
 ]
 
+{ #category : #accessing }
+RulesBrowserPresenter >> packages [
+	^ packages
+]
+
+{ #category : #defaults }
+RulesBrowserPresenter >> refreshClassesList: classesInPackage [
+	classes unselectAll.
+	classes items: classesInPackage.
+	self refreshMethodsList: #()
+]
+
+{ #category : #defaults }
+RulesBrowserPresenter >> refreshMethodsList: selectedClasses [
+	| allMethodsInClasses |
+	allMethodsInClasses := OrderedCollection new.
+	selectedClasses
+		do: [ :eachClass | allMethodsInClasses addAll: eachClass selectors ].
+	methods unselectAll.
+	methods items: allMethodsInClasses
+]
+
 { #category : #'event handling' }
 RulesBrowserPresenter >> selectedClassesChanged [
 	| selectedClasses |
 	selectedClasses := classes selectedItems.
 	(self areSelectedItemsValid: selectedClasses)
 		ifFalse: [ ^ self ].
-	self fillMethodsPane: selectedClasses
-]
-
-{ #category : #'event handling' }
-RulesBrowserPresenter >> selectedMethodsChanged [
+	self refreshMethodsList: selectedClasses
 ]
 
 { #category : #'event handling' }
@@ -162,11 +198,5 @@ RulesBrowserPresenter >> selectedPackagesChanged [
 		ifFalse: [ ^ self ].
 	classesInPackage := self
 		obtainAllClassesOfSelectedPackages: selectedPackages.
-	self updateClassesItems: classesInPackage
-]
-
-{ #category : #defaults }
-RulesBrowserPresenter >> updateClassesItems: classesInPackage [
-	classes items: classesInPackage.
-	classes resetListSelection
+	self refreshClassesList: classesInPackage
 ]

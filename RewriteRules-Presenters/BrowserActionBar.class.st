@@ -15,13 +15,18 @@ Class {
 }
 
 { #category : #specs }
+BrowserActionBar class >> checkboxWidth [
+	^ 160
+]
+
+{ #category : #specs }
 BrowserActionBar class >> defaultSpec [
 	^ SpBoxLayout newHorizontal
-		add: #applyButton;
 		add: #rules;
-		add: #checkbox;
-		add: #browseButton;
+		add: #checkbox width: self checkboxWidth;
+		add: #applyButton;
 		add: #editButton;
+		add: #browseButton;
 		yourself
 ]
 
@@ -29,7 +34,7 @@ BrowserActionBar class >> defaultSpec [
 BrowserActionBar >> initializeApplyButton [
 	applyButton := self newButton.
 	applyButton
-		label: 'Apply rules';
+		label: 'Apply rule';
 		icon: (self iconNamed: #smallOk)
 ]
 

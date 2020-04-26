@@ -94,9 +94,9 @@ RulesMatcherPresenter >> initializeResultList [
 { #category : #initialization }
 RulesMatcherPresenter >> initializefocusOrder [
 	self focusOrder
-		add: #patternExpression;
-		add: #codeExpression;
-		add: #executeButton;
-		add: #resultList;
-		add: #matchMap
+		add: patternExpression;
+		add: codeExpression;
+		add: executeButton;
+		add: resultList;
+		add: matchMap
 ]
