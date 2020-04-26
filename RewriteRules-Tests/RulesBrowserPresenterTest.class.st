@@ -24,7 +24,7 @@ RulesBrowserPresenterTest >> testSelectedClassesChanged [
 		yourself.
 	selectorsOfTheSelectedClasses := OrderedCollection new.
 	selectedClasses
-		do: [ :c | selectorsOfTheSelectedClasses addAll: c selectors ].
+		do: [ :each | selectorsOfTheSelectedClasses addAll: each selectors ].
 	rulesBrowser classes items: Smalltalk globals allClasses.
 	rulesBrowser classes selectItems: selectedClasses.
 	self
