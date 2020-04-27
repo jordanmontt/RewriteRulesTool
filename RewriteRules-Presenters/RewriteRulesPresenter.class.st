@@ -11,6 +11,11 @@ Class {
 }
 
 { #category : #specs }
+RewriteRulesPresenter class >> aboutText [
+	^ 'Build, match and browse customized Rewrite Rules.'
+]
+
+{ #category : #specs }
 RewriteRulesPresenter class >> defaultSpec [
 	^ SpBoxLayout newVertical
 	add: #tabManager;
@@ -24,8 +29,8 @@ RewriteRulesPresenter class >> menuCommandOn: aBuilder [
 		action: [ self open ];
 		order: 22;
 		parent: #Tools;
-		help: 'Build, match and browse customized Rewrite Rules.';
-		icon: ((self iconNamed: #book) scaledToSize: 16 @ 16);
+		help: self aboutText;
+		icon: self windowIcon;
 		withSeparatorAfter
 ]
 
@@ -56,22 +61,44 @@ RewriteRulesPresenter class >> toolWidth [
 	^ 1100
 ]
 
-{ #category : #initialization }
-RewriteRulesPresenter >> connectPresenters [
-	super connectPresenters.
-]
-
-{ #category : #initialization }
-RewriteRulesPresenter >> initialExtent [
-	^ self class toolWidth @ self class toolHeight
+{ #category : #specs }
+RewriteRulesPresenter class >> windowIcon [
+	^ (self iconNamed: #book) scaledToSize: 16 @ 16
 ]
 
 { #category : #initialization }
 RewriteRulesPresenter >> initializePresenters [
-	tabManager := self instantiate: RewriteTabManagerPresenter
+	tabManager := self newNotebook.
+	tabManager
+		addPage:
+			(SpNotebookPage
+				title: 'Create Rewrite Rules'
+				icon: (self iconNamed: #configuration)
+				provider: [ RulesBuilderPresenter new ]);
+		addPage:
+			(SpNotebookPage
+				title: 'Match Rewrite Rules'
+				icon: (self iconNamed: #smallObjects)
+				provider: [ RulesMatcherPresenter new ]);
+		addPage:
+			(SpNotebookPage
+				title: 'Browse and apply saved Rewrite Rules'
+				icon: (self iconNamed: #catalog)
+				provider: [ RulesBrowserPresenter new ]);
+		addPage:
+			(SpNotebookPage
+				title: 'Rewrite Rules Information'
+				icon: (self iconNamed: #smallInfo)
+				provider: [ RulesInformationHelperPresenter new ]).
+	self focusOrder: tabManager
 ]
 
 { #category : #initialization }
-RewriteRulesPresenter >> title [ 
-	^ 'Rewrite Rule Builder'
+RewriteRulesPresenter >> initializeWindow: aWindowPresenter [
+	aWindowPresenter
+		title: 'Rewrite Rule Builder';
+		initialExtent: self class toolWidth @ self class toolHeight;
+		windowIcon: self class windowIcon;
+		askOkToClose: false;
+		aboutText: self class aboutText
 ]

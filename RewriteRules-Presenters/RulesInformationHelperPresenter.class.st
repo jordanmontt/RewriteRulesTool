@@ -47,17 +47,17 @@ RulesInformationHelperPresenter >> initializeTopics [
 		display: [ :e | e title ]
 ]
 
-{ #category : #initialization }
+{ #category : #actions }
 RulesInformationHelperPresenter >> obtainTopics [
 	^ RulesInformationContent topics
 ]
 
-{ #category : #initialization }
+{ #category : #actions }
 RulesInformationHelperPresenter >> selectFirstTopic [
 	topics selectItem: (topics items at: 1).
 ]
 
-{ #category : #initialization }
+{ #category : #actions }
 RulesInformationHelperPresenter >> updateContentText: aText [
 	content text: aText
 ]

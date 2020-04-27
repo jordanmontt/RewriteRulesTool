@@ -15,22 +15,15 @@ Class {
 }
 
 { #category : #specs }
-RulesMatcherPresenter class >> buttonHeight [
-	^ 45
-]
-
-{ #category : #specs }
 RulesMatcherPresenter class >> defaultSpec [
 	| expressionsColumn listResultColumn paddingConstraints |
 	paddingConstraints := [ :constraints | constraints padding: RewriteRulesPresenter toolPadding ].
 	expressionsColumn := SpBoxLayout newVertical
 		add: #patternExpression withConstraints: paddingConstraints;
-		add: #codeExpression ;
+		add: #codeExpression;
 		yourself.
 	listResultColumn := SpBoxLayout newVertical
-		add: #executeButton
-			withConstraints:
-				[ :constraints | constraints height: RewriteRulesPresenter titleHeight ];
+		add: #executeButton  height: RewriteRulesPresenter titleHeight;
 		add: #resultList withConstraints: paddingConstraints;
 		yourself.
 	^ SpBoxLayout newHorizontal
@@ -46,8 +39,7 @@ RulesMatcherPresenter class >> defaultSpec [
 
 { #category : #specs }
 RulesMatcherPresenter class >> width [
-	self flag: 'refactor to use the tool width'. 
-	^ 450
+	^ RewriteRulesPresenter toolWidth / 2.5
 ]
 
 { #category : #initialization }

@@ -46,10 +46,10 @@ TitlePresenter >> name: aName [
 
 { #category : #initialization }
 TitlePresenter >> obtainFontFamilyName [
-	^ Smalltalk ui theme labelFont familyName
+	^ self theme labelFont familyName
 ]
 
 { #category : #initialization }
 TitlePresenter >> obtainFontPointSize [
-	^ Smalltalk ui theme labelFont pointSize + 2
+	^ self theme labelFont pointSize + 2
 ]
